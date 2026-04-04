@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <title>AMAL C K - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
+    body { background:#0f172a; color:#e2e8f0; }
+
+    header {
+      background: linear-gradient(135deg,#6366f1,#3b82f6);
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    header h1 { font-size:2.2rem; }
+    header p { margin:10px 0; }
+
+    .btn {
+      display:inline-block;
+      margin:8px;
+      padding:8px 14px;
+      background:#1e293b;
+      color:white;
+      border-radius:6px;
+      text-decoration:none;
+    }
+
+    section { max-width:1000px; margin:auto; padding:40px 20px; }
+
+    h2 { color:#60a5fa; margin-bottom:20px; }
+
+    .card {
+      background:#1e293b;
+      padding:20px;
+      border-radius:10px;
+      margin-bottom:20px;
+    }
+
+    .projects {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .project-card {
+      background:#1e293b;
+      padding:15px;
+      border-radius:10px;
+      transition:0.3s;
+    }
+
+    .project-card:hover {
+      transform:translateY(-5px);
+    }
+
+    .links a {
+      display:inline-block;
+      margin-right:10px;
+      margin-top:10px;
+      color:#60a5fa;
+      text-decoration:none;
+    }
+
+    .skills span {
+      background:#3b82f6;
+      padding:6px 10px;
+      border-radius:20px;
+      margin:5px;
+      display:inline-block;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      background:#020617;
+    }
+
+    @media (max-width:600px) {
+      header h1 { font-size:1.8rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>AMAL C K</h1>
+  <p>| Python Developer | Django |</p>
+
+  <a href="resume.pdf" class="btn" download>Download Resume</a>
+  <a href="resume.pdf" class="btn" target="_blank">View Resume</a>
+  <br>
+  <a href="https://github.com/AMAL-C-K/" class="btn">GitHub</a>
+  <a href="https://www.linkedin.com/in/amal-c-k-b10007270/" class="btn">LinkedIn</a>
+</header>
+
+<section>
+  <h2>About</h2>
+  <div class="card">
+    <p>I am a passionate and motivated Python developer looking for opportunities in developer roles. I have built several projects using Django and enjoy learning new technologies to improve my development skills.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <div class="card skills">
+    <span>Python</span>
+    <span>SQL</span>
+
+    <span>Django</span>
+    <span>Django REST Framework</span>
+    <span>Flask</span>
+
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+
+    <span>OOP</span>
+    <span>Data Structures & Algorithms</span>
+
+    <span>MySQL</span>
+    <span>PostgreSQL</span>
+    <span>SQLite</span>
+
+    <span>Git</span>
+    <span>GitHub</span>
+    <span>Postman</span>
+
+    <span>Render</span>
+    <span>Vercel</span>
+    <span>PythonAnywhere</span>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="projects">
+
+    <div class="project-card">
+      <h3>Ecommerce Web Application</h3>
+      <p>Developed a full-featured ecommerce platform with user authentication, product listing, cart system, and order management. Integrated Razorpay for secure online payments.</p>
+      <div class="links">
+        <a href="https://github.com/AMAL-C-K/READORA-ECOMMERCE">GitHub</a>
+        <a href="https://readora.pythonanywhere.com/">Live Demo</a>
+      </div>
+      <p><strong>Tech:</strong> Python, Django, HTML, CSS, Bootstrap, SQLite, Razorpay API</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Job Portal Backend API</h3>
+      <p>Built a secure REST API with JWT authentication and role-based access for job seekers and recruiters. Includes job posting, applications, resume upload, and tracking.</p>
+      <div class="links">
+        <a href="https://github.com/AMAL-C-K/JOB-PORTAL-BACKEND-API">GitHub</a>
+      </div>
+      <p><strong>Tech:</strong> Python, Django REST Framework, SimpleJWT, SQLite, Postman</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Task Management Full Stack App</h3>
+      <p>Created a full-stack task management system with authentication using React frontend and Django REST backend. Deployed using modern hosting platforms.</p>
+      <div class="links">
+        <a href="https://github.com/AMAL-C-K/TASKS-MANAGEMENT-PROJECT">GitHub</a>
+        <a href="https://tasks-management-project-xuf7.vercel.app/">Frontend</a>
+        <a href="https://tasks-management-project-2.onrender.com/">Backend</a>
+      </div>
+      <p><strong>Tech:</strong> React, Django REST Framework, SQLite, Vercel, Render</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="card">
+    <p>Bachelor of Science - Computer Science  <br>Collage of Applied Science, Calicut – University of Calicut <br> APRIL - 2022</p>
+  </div>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <div class="card">
+    <p>Email: amalckgs@gmail.com</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 AMAL C K</p>
+</footer>
+
+</body>
+</html>
