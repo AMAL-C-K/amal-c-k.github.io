@@ -3,167 +3,553 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1120">
+  <meta name="description" content="Amal C K - Python Full-Stack Developer portfolio featuring Django, React, REST APIs and AI-powered web applications.">
+
   <link rel="icon" href="favicon.png" type="image/png">
-  <title>AMAL C K - Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>AMAL C K | Python Full-Stack Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
+    :root {
+      --bg: #0b1120;
+      --bg-soft: #101a2e;
+      --card: #121e32;
+      --card-hover: #17253b;
+      --border: rgba(148, 163, 184, 0.15);
+      --text: #e8eef8;
+      --muted: #94a3b8;
+      --primary: #818cf8;
+      --secondary: #38bdf8;
+      --accent: #a5b4fc;
+      --radius: 18px;
+      --container: 1120px;
+      --shadow: 0 16px 45px rgba(0, 0, 0, 0.2);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
-      background: #0f172a;
-      color: #e2e8f0;
+      font-family: 'DM Sans', sans-serif;
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(99, 102, 241, 0.12), transparent 35%),
+        radial-gradient(ellipse at 90% 35%, rgba(56, 189, 248, 0.06), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    header {
-      background: linear-gradient(135deg, #6366f1, #3b82f6);
-      text-align: center;
-      padding: 40px 20px;
+    body.modal-open {
+      overflow: hidden;
     }
 
-    header h1 { font-size: 2.2rem; }
-    header p { margin: 10px 0; }
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--secondary);
+      outline-offset: 4px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--secondary);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
+
+    .section-heading > p {
+      max-width: 650px;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    /* Navigation */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11, 17, 32, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      padding: 95px 0 90px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 65px;
+      right: -150px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.09);
+      filter: blur(75px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 790px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      padding: 8px 13px;
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      border-radius: 30px;
+      background: rgba(16, 185, 129, 0.07);
+      color: #a7f3d0;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .availability-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 1.08;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(100deg, #a5b4fc, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-top: 18px;
+      color: #cbd5e1;
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      font-weight: 500;
+    }
+
+    .hero-description {
+      max-width: 670px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
 
     .btn {
-      display: inline-block;
-      margin: 8px;
-      padding: 8px 14px;
-      background: #1e293b;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    h2 {
-      color: #60a5fa;
-      margin-bottom: 20px;
-    }
-
-    .card {
-      background: #1e293b;
-      padding: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 11px 18px;
+      border: 1px solid var(--border);
       border-radius: 10px;
-      margin-bottom: 20px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(129, 140, 248, 0.5);
+      background: var(--card-hover);
+    }
+
+    .btn-primary {
+      border-color: transparent;
+      background: linear-gradient(110deg, #6366f1, #3b82f6);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      border-color: transparent;
+      background: linear-gradient(110deg, #4f46e5, #2563eb);
+    }
+
+    .hero-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 26px;
+    }
+
+    .hero-socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .hero-socials a:hover {
+      color: var(--secondary);
+    }
+
+    /* About */
+
+    .about-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(18, 30, 50, 0.96), rgba(16, 26, 46, 0.8));
+      box-shadow: var(--shadow);
+    }
+
+    .about-card p {
+      color: #cbd5e1;
+      line-height: 1.95;
+    }
+
+    .about-mark {
+      display: grid;
+      place-items: center;
+      width: 94px;
+      height: 94px;
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 24px;
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--accent);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    /* Skills */
+
+    .skills-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skills span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: 1px solid rgba(129, 140, 248, 0.18);
+      border-radius: 9px;
+      background: rgba(99, 102, 241, 0.09);
+      color: #dbeafe;
+      font-size: 0.86rem;
+      font-weight: 500;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .skills span:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    /* Projects */
 
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       align-items: start;
+      gap: 24px;
     }
 
     .project-card {
-      background: #1e293b;
-      padding: 15px;
-      border-radius: 10px;
-      transition: transform 0.3s;
       min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(155deg, #142139, #101a2d);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .project-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      border-color: rgba(129, 140, 248, 0.4);
+      box-shadow: var(--shadow);
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 17px;
+      border: 1px solid rgba(129, 140, 248, 0.24);
+      border-radius: 13px;
+      background: rgba(99, 102, 241, 0.13);
+      color: var(--accent);
+      font-size: 1.25rem;
     }
 
     .project-card h3 {
       margin-bottom: 10px;
-      color: #f8fafc;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.4;
     }
 
-    .project-card > p {
-      margin-top: 12px;
-      line-height: 1.7;
-      overflow-wrap: anywhere;
+    .project-description {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.85;
     }
 
-    .links a {
-      display: inline-block;
-      margin-right: 10px;
-      margin-top: 10px;
-      color: #60a5fa;
+    .project-tech {
+      margin-top: 16px;
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .project-tech strong {
+      color: var(--secondary);
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #c7d2fe;
+      font-size: 0.83rem;
+      font-weight: 600;
       text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .links a:hover {
-      text-decoration: underline;
+    .project-links a:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(56, 189, 248, 0.08);
     }
 
-    .skills span {
-      background: #3b82f6;
-      padding: 6px 10px;
-      border-radius: 20px;
-      margin: 5px;
-      display: inline-block;
+    /* Screenshot gallery */
+
+    .gallery-section {
+      padding: 0 24px 24px;
     }
 
-    /* Scrollable screenshot gallery */
     .screenshot-heading {
-      color: #93c5fd;
-      font-size: 0.9rem;
-      margin: 14px 0 8px;
+      margin-bottom: 12px;
+      color: #c7d2fe;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .screenshot-gallery {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      max-height: 320px;
+      max-height: 380px;
       overflow-y: auto;
       padding: 3px 5px 3px 0;
       scrollbar-width: thin;
-      scrollbar-color: #64748b #0f172a;
+      scrollbar-color: #475569 #101a2e;
+    }
+
+    .screenshot-gallery figure {
+      min-width: 0;
     }
 
     .screenshot-gallery img {
       display: block;
       width: 100%;
-      height: auto;
-      max-height: 220px;
-      object-fit: contain;
-      background: #0f172a;
-      border-radius: 7px;
-      border: 1px solid #334155;
+      height: 135px;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #0b1120;
       cursor: zoom-in;
-      transition: opacity 0.2s;
+      transition: transform 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
     }
 
     .screenshot-gallery img:hover {
-      opacity: 0.85;
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      opacity: 0.9;
     }
 
     .screenshot-gallery figcaption {
-      font-size: 0.78rem;
-      color: #cbd5e1;
-      margin-top: 5px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.5;
     }
 
     .gallery-note {
-      color: #94a3b8;
-      font-size: 0.78rem;
-      margin: 7px 0 14px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.77rem;
     }
 
-    /* Full-size image preview */
+    /* Image modal */
+
     .image-modal {
-      display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(2, 6, 23, 0.94);
-      padding: 55px 15px 20px;
+      display: none;
       align-items: center;
       justify-content: center;
+      padding: 65px 20px 25px;
+      background: rgba(2, 6, 23, 0.96);
+      backdrop-filter: blur(10px);
     }
 
     .image-modal.open {
@@ -172,405 +558,969 @@
 
     .image-modal img {
       display: block;
-      max-width: 95%;
-      max-height: 90vh;
+      max-width: 100%;
+      max-height: 85vh;
       object-fit: contain;
-      border-radius: 6px;
+      border-radius: 8px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.4);
     }
 
     .modal-close {
       position: absolute;
-      top: 12px;
-      right: 22px;
-      background: #1e293b;
-      color: white;
-      border: 1px solid #64748b;
-      border-radius: 8px;
-      padding: 8px 14px;
-      font-size: 1rem;
+      top: 16px;
+      right: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.9rem;
       cursor: pointer;
     }
 
     .modal-close:hover {
-      background: #334155;
+      background: var(--card-hover);
     }
+
+    /* Education */
+
+    .education-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+
+    .education-icon {
+      display: grid;
+      flex: 0 0 48px;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--secondary);
+      font-size: 1.25rem;
+    }
+
+    .education-card h3 {
+      margin-bottom: 7px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+    }
+
+    .education-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .education-date {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* Contact */
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(120deg, rgba(99, 102, 241, 0.13), rgba(56, 189, 248, 0.06));
+    }
+
+    .contact-card h3 {
+      margin-bottom: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      overflow-wrap: anywhere;
+      color: #c7d2fe;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-email:hover {
+      color: var(--secondary);
+    }
+
+    /* Footer */
 
     footer {
-      text-align: center;
-      padding: 20px;
-      background: #020617;
+      border-top: 1px solid var(--border);
+      padding: 26px 0;
+      background: rgba(2, 6, 23, 0.5);
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.8rem; }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
 
-      section {
-        padding: 30px 15px;
+    .footer-inner p {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 850px) {
+      .section {
+        padding: 68px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 78px 0;
       }
 
       .projects {
         grid-template-columns: 1fr;
       }
 
+      .project-card {
+        max-width: 680px;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+
+      .about-mark {
+        display: none;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: calc(100% - 32px);
+      }
+
+      .nav-inner {
+        min-height: 66px;
+      }
+
+      .nav-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 16px 16px;
+        border-bottom: 1px solid var(--border);
+        background: #0b1120;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px;
+        border-radius: 8px;
+      }
+
+      .nav-links a:hover {
+        background: var(--card);
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 12vw, 3.7rem);
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 0.94rem;
+      }
+
+      .hero-actions .btn {
+        flex: 1 1 145px;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .about-card,
+      .skills-card {
+        padding: 21px;
+      }
+
+      .project-content {
+        padding: 20px;
+      }
+
+      .gallery-section {
+        padding: 0 20px 20px;
+      }
+
       .screenshot-gallery {
-        max-height: 280px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-height: 330px;
+      }
+
+      .screenshot-gallery img {
+        height: 115px;
+      }
+
+      .contact-card {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 23px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .brand {
+        font-size: 1.15rem;
+      }
+
+      .hero h1 {
+        font-size: 2.35rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .screenshot-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .screenshot-gallery img {
+        height: auto;
+        max-height: 220px;
+        object-fit: contain;
+      }
+
+      .project-links a {
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
-<body>
+<body id="top">
 
-<header>
-  <h1>AMAL C K</h1>
-  <p>Python Full-Stack Developer | Django | REST APIs</p>
+  <!-- Navigation -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">AMAL<span>.</span></a>
 
-  <a href="resume.pdf" class="btn" download>Download Resume</a>
-  <a href="resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">View Resume</a>
-  <br>
-  <a href="https://github.com/AMAL-C-K/" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-  <a href="https://www.linkedin.com/in/amal-c-k-b10007270/" class="btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-</header>
+      <button class="nav-toggle" id="navToggle"
+              type="button" aria-label="Open navigation menu"
+              aria-expanded="false" aria-controls="navLinks">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
 
-<section>
-  <h2>About</h2>
-  <div class="card">
-    <p>
-      I am a Computer Science graduate with hands-on experience
-      building web applications using Python, Django REST Framework,
-      React, and SQL databases. I have developed projects involving
-      authentication, REST API integration, database management,
-      and AI-powered applications using the Google Gemini API.
-      I am eager to contribute to real-world projects and continue
-      growing as a full-stack developer.
-    </p>
-  </div>
-</section>
-
-<section>
-  <h2>Skills</h2>
-  <div class="card skills">
-    <span>Python</span>
-    <span>SQL</span>
-    <span>Django</span>
-    <span>Django REST Framework</span>
-    <span>Flask</span>
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>React</span>
-    <span>OOP</span>
-    <span>Data Structures &amp; Algorithms</span>
-    <span>MySQL</span>
-    <span>PostgreSQL</span>
-    <span>SQLite</span>
-    <span>Git</span>
-    <span>GitHub</span>
-    <span>Postman</span>
-    <span>Render</span>
-    <span>Vercel</span>
-    <span>PythonAnywhere</span>
-    <span>Google Gemini API</span>
-    <span>LLM Integration</span>
-    <span>REST APIs</span>
-    <span>JWT Authentication</span>
-  </div>
-</section>
-
-<section>
-  <h2>Projects</h2>
-
-  <div class="projects">
-
-    <!-- E-COMMERCE PROJECT -->
-    <div class="project-card">
-      <h3>E-commerce Web Application</h3>
-
-      <p>
-        Developed a full-featured e-commerce platform with user
-        authentication, product listing, cart system, and order
-        management. Integrated Razorpay for online payments.
-      </p>
-
-      <h4 class="screenshot-heading">Project Screenshots</h4>
-
-      <div class="screenshot-gallery">
-        <figure>
-          <img class="gallery-image"
-               src="index.jpeg"
-               alt="E-commerce bookstore homepage"
-               loading="lazy">
-          <figcaption>Bookstore Homepage</figcaption>
-        </figure>
-
-        <figure>
-          <img class="gallery-image"
-               src="bookdetail.jpeg"
-               alt="Book details page"
-               loading="lazy">
-          <figcaption>Book Details</figcaption>
-        </figure>
-
-        <figure>
-          <img class="gallery-image"
-               src="cart.jpeg"
-               alt="Shopping cart page"
-               loading="lazy">
-          <figcaption>Shopping Cart</figcaption>
-        </figure>
-        <figure>
-          <img class="gallery-image"
-               src="orders.jpeg"
-               alt="Shopping order page"
-               loading="lazy">
-          <figcaption>Shopping Orders</figcaption>
-        </figure>
-
-        <figure>
-          <img class="gallery-image"
-               src="checkout.jpeg"
-               alt="E-commerce checkout page"
-               loading="lazy">
-          <figcaption>Checkout</figcaption>
-        </figure>
-        <figure>
-          <img class="gallery-image"
-               src="login.jpeg"
-               alt="E-commerce Signin page"
-               loading="lazy">
-          <figcaption>Login</figcaption>
-        </figure>
-        <figure>
-          <img class="gallery-image"
-               src="signup.jpeg"
-               alt="E-commerce Signup page"
-               loading="lazy">
-          <figcaption>Signup</figcaption>
-        </figure>
-        
-        <figure>
-          <img class="gallery-image"
-               src="search.jpeg"
-               alt="E-commerce search page"
-               loading="lazy">
-          <figcaption>Search</figcaption>
-        </figure>
-        
-      </div>
-
-      <p class="gallery-note">Scroll to explore. Click a screenshot to enlarge it.</p>
-
-      <div class="links">
-        <a href="https://github.com/AMAL-C-K/READORA-ECOMMERCE"
-           target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://readora.pythonanywhere.com/"
-           target="_blank" rel="noopener noreferrer">Live Demo</a>
-      </div>
-
-      <p><strong>Tech:</strong> Python, Django, HTML, CSS, Bootstrap, SQLite, Razorpay API</p>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- JOB PORTAL PROJECT -->
-    <div class="project-card">
-      <h3>Job Portal Backend API</h3>
+  <main>
 
-      <p>
-        Built a REST API with JWT authentication and role-based access
-        for job seekers and recruiters. Includes job posting and
-        application management.
-      </p>
+    <!-- Hero -->
+    <header class="hero">
+      <div class="container">
+        <div class="hero-content">
 
-      <h4 class="screenshot-heading">Project Screenshots</h4>
+          <div class="availability">
+            <span class="availability-dot"></span>
+            Python Full-Stack Developer
+          </div>
 
-      <div class="screenshot-gallery">
-        <figure>
-          <img class="gallery-image"
-               src="images/job-portal-login.jpg"
-               alt="Job portal login page"
-               loading="lazy">
-          <figcaption>Login Page</figcaption>
-        </figure>
+          <h1>
+            Hi, I'm Amal.<br>
+            I build <span>web applications.</span>
+          </h1>
 
-        <figure>
-          <img class="gallery-image"
-               src="images/job-portal-jobs.jpg"
-               alt="Job portal job listings"
-               loading="lazy">
-          <figcaption>Job Listings</figcaption>
-        </figure>
+          <p class="hero-subtitle">
+            Python · Django · REST APIs · React
+          </p>
 
-        <figure>
-          <img class="gallery-image"
-               src="images/job-portal-application.jpg"
-               alt="Job application page"
-               loading="lazy">
-          <figcaption>Job Applications</figcaption>
-        </figure>
+          <p class="hero-description">
+            I am a Computer Science graduate passionate about building
+            practical web applications, developing REST APIs, and
+            integrating AI-powered features. I enjoy solving problems
+            and continuously improving my development skills.
+          </p>
 
-        <figure>
-          <img class="gallery-image"
-               src="images/job-portal-dashboard.jpg"
-               alt="Employer job management dashboard"
-               loading="lazy">
-          <figcaption>Employer Dashboard</figcaption>
-        </figure>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fa-solid fa-code" aria-hidden="true"></i>
+              Explore Projects
+            </a>
+
+            <a href="resume.pdf" class="btn" download>
+              <i class="fa-solid fa-download" aria-hidden="true"></i>
+              Download Resume
+            </a>
+
+            <a href="resume.pdf" class="btn"
+               target="_blank" rel="noopener noreferrer">
+              <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
+              View Resume
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://github.com/AMAL-C-K/"
+               target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              GitHub
+            </a>
+
+            <a href="https://www.linkedin.com/in/amal-c-k-b10007270/"
+               target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              LinkedIn
+            </a>
+
+            <a href="mailto:amalckgs@gmail.com">
+              <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+              Email Me
+            </a>
+          </div>
+
+        </div>
       </div>
+    </header>
 
-      <p class="gallery-note">Scroll to explore. Click a screenshot to enlarge it.</p>
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
 
-      <div class="links">
-        <a href="https://github.com/AMAL-C-K/JOB-PORTAL-BACKEND-API"
-           target="_blank" rel="noopener noreferrer">GitHub</a>
+        <div class="section-heading">
+          <span class="eyebrow">Introduction</span>
+          <h2>About Me</h2>
+        </div>
+
+        <div class="about-card">
+          <p>
+            I am a Computer Science graduate with hands-on experience
+            building web applications using Python, Django REST Framework,
+            React, and SQL databases. I have developed projects involving
+            authentication, REST API integration, database management,
+            and AI-powered applications using the Google Gemini API.
+            I am eager to contribute to real-world projects and continue
+            growing as a full-stack developer.
+          </p>
+
+          <div class="about-mark" aria-hidden="true">ACK</div>
+        </div>
+
       </div>
+    </section>
 
-      <p><strong>Tech:</strong> Python, Django REST Framework, SimpleJWT, SQLite, Postman</p>
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">What I work with</span>
+          <h2>Technical Skills</h2>
+          <p>Technologies and tools I use to build web applications and APIs.</p>
+        </div>
+
+        <div class="skills-card">
+          <div class="skills">
+            <span>Python</span>
+            <span>SQL</span>
+            <span>Django</span>
+            <span>Django REST Framework</span>
+            <span>Flask</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>React</span>
+            <span>OOP</span>
+            <span>Data Structures &amp; Algorithms</span>
+            <span>MySQL</span>
+            <span>PostgreSQL</span>
+            <span>SQLite</span>
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>Postman</span>
+            <span>Render</span>
+            <span>Vercel</span>
+            <span>PythonAnywhere</span>
+            <span>Google Gemini API</span>
+            <span>LLM Integration</span>
+            <span>REST APIs</span>
+            <span>JWT Authentication</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Selected work</span>
+          <h2>My Projects</h2>
+          <p>
+            A selection of projects demonstrating my experience with
+            web development, backend APIs, databases, and AI integration.
+          </p>
+        </div>
+
+        <div class="projects">
+
+          <!-- E-commerce project -->
+          <article class="project-card">
+            <div class="project-content">
+
+              <div class="project-icon">
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+              </div>
+
+              <h3>E-commerce Web Application</h3>
+
+              <p class="project-description">
+                Developed a full-featured e-commerce bookstore with user
+                authentication, product listings, a shopping cart, and
+                order management. Integrated Razorpay for online payments.
+              </p>
+
+              <p class="project-tech">
+                <strong>Tech:</strong>
+                Python, Django, HTML, CSS, Bootstrap, SQLite, Razorpay API
+              </p>
+
+              <div class="project-links">
+                <a href="https://github.com/AMAL-C-K/READORA-ECOMMERCE"
+                   target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  GitHub
+                </a>
+
+                <a href="https://readora.pythonanywhere.com/"
+                   target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"
+                     aria-hidden="true"></i>
+                  Live Demo
+                </a>
+              </div>
+
+            </div>
+
+            <div class="gallery-section">
+              <h4 class="screenshot-heading">Project Screenshots</h4>
+
+              <div class="screenshot-gallery">
+                <figure>
+                  <img class="gallery-image"
+                       src="index.jpeg"
+                       alt="E-commerce bookstore homepage"
+                       loading="lazy">
+                  <figcaption>Bookstore Homepage</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="bookdetail.jpeg"
+                       alt="Book details page"
+                       loading="lazy">
+                  <figcaption>Book Details</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="cart.jpeg"
+                       alt="Shopping cart page"
+                       loading="lazy">
+                  <figcaption>Shopping Cart</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="orders.jpeg"
+                       alt="Shopping orders page"
+                       loading="lazy">
+                  <figcaption>Shopping Orders</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="checkout.jpeg"
+                       alt="E-commerce checkout page"
+                       loading="lazy">
+                  <figcaption>Checkout</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="login.jpeg"
+                       alt="E-commerce login page"
+                       loading="lazy">
+                  <figcaption>Login</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="signup.jpeg"
+                       alt="E-commerce signup page"
+                       loading="lazy">
+                  <figcaption>Signup</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="search.jpeg"
+                       alt="E-commerce search page"
+                       loading="lazy">
+                  <figcaption>Search</figcaption>
+                </figure>
+              </div>
+
+              <p class="gallery-note">
+                Scroll to explore. Select a screenshot to enlarge it.
+              </p>
+            </div>
+          </article>
+
+          <!-- Job portal project -->
+          <article class="project-card">
+            <div class="project-content">
+
+              <div class="project-icon">
+                <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+              </div>
+
+              <h3>Job Portal Backend API</h3>
+
+              <p class="project-description">
+                Built a REST API with JWT authentication and role-based
+                access for job seekers and recruiters. Includes job posting
+                and application management.
+              </p>
+
+              <p class="project-tech">
+                <strong>Tech:</strong>
+                Python, Django REST Framework, SimpleJWT, SQLite, Postman
+              </p>
+
+              <div class="project-links">
+                <a href="https://github.com/AMAL-C-K/JOB-PORTAL-BACKEND-API"
+                   target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  GitHub
+                </a>
+              </div>
+
+            </div>
+
+            <div class="gallery-section">
+              <h4 class="screenshot-heading">Project Screenshots</h4>
+
+              <div class="screenshot-gallery">
+                <figure>
+                  <img class="gallery-image"
+                       src="images/job-portal-login.jpg"
+                       alt="Job portal login page"
+                       loading="lazy">
+                  <figcaption>Login Page</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="images/job-portal-jobs.jpg"
+                       alt="Job portal job listings"
+                       loading="lazy">
+                  <figcaption>Job Listings</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="images/job-portal-application.jpg"
+                       alt="Job application page"
+                       loading="lazy">
+                  <figcaption>Job Applications</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="images/job-portal-dashboard.jpg"
+                       alt="Employer job management dashboard"
+                       loading="lazy">
+                  <figcaption>Employer Dashboard</figcaption>
+                </figure>
+              </div>
+
+              <p class="gallery-note">
+                Scroll to explore. Select a screenshot to enlarge it.
+              </p>
+            </div>
+          </article>
+
+          <!-- AI Resume Analyser project -->
+          <article class="project-card">
+            <div class="project-content">
+
+              <div class="project-icon">
+                <i class="fa-solid fa-file-circle-check" aria-hidden="true"></i>
+              </div>
+
+              <h3>AI Resume Analyser</h3>
+
+              <p class="project-description">
+                Created a full-stack AI resume analysis application with
+                authentication, a React frontend, a Django REST backend,
+                and AI-powered resume feedback.
+              </p>
+
+              <p class="project-tech">
+                <strong>Tech:</strong>
+                React, Django REST Framework, PostgreSQL, Google Gemini API, JWT
+              </p>
+
+              <div class="project-links">
+                <a href="https://github.com/AMAL-C-K/Ai-Resume-Analyser"
+                   target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                  GitHub
+                </a>
+
+                <a href="https://ai-resume-analyser-80vh.onrender.com/"
+                   target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"
+                     aria-hidden="true"></i>
+                  Live Demo
+                </a>
+              </div>
+
+            </div>
+
+            <div class="gallery-section">
+              <h4 class="screenshot-heading">Project Screenshots</h4>
+
+              <div class="screenshot-gallery">
+                <figure>
+                  <img class="gallery-image"
+                       src="resdash.jpeg"
+                       alt="Resume analyser dashboard"
+                       loading="lazy">
+                  <figcaption>Dashboard</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="resupload.jpeg"
+                       alt="Resume upload page"
+                       loading="lazy">
+                  <figcaption>Resume Upload</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="resanalysis.jpeg"
+                       alt="Resume analysis results"
+                       loading="lazy">
+                  <figcaption>Resume Analysis</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="ressignin.jpeg"
+                       alt="Resume analyser sign-in page"
+                       loading="lazy">
+                  <figcaption>Sign In</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
+                       src="ressignup.jpeg"
+                       alt="Resume analyser signup page"
+                       loading="lazy">
+                  <figcaption>Sign Up</figcaption>
+                </figure>
+              </div>
+
+              <p class="gallery-note">
+                Scroll to explore. Select a screenshot to enlarge it.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section" id="education">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Academic background</span>
+          <h2>Education</h2>
+        </div>
+
+        <div class="education-card">
+          <div class="education-icon">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+          </div>
+
+          <div>
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p>College of Applied Science, Calicut</p>
+            <p>University of Calicut</p>
+            <span class="education-date">Graduated April 2022</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Get in touch</span>
+          <h2>Let's Connect</h2>
+          <p>
+            Interested in my work or have a development opportunity?
+            Feel free to reach out.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div>
+            <h3>Have an opportunity?</h3>
+            <p>I'd be happy to hear from you.</p>
+          </div>
+
+          <a href="mailto:amalckgs@gmail.com" class="contact-email">
+            <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+            amalckgs@gmail.com
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="currentYear">2026</span> Amal C K. All rights reserved.</p>
+
+      <a href="#top" class="back-to-top">
+        Back to top
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+      </a>
     </div>
+  </footer>
 
-    <!-- AI RESUME ANALYSER PROJECT -->
-    <div class="project-card">
-      <h3>AI RESUME ANALYSER </h3>
+  <!-- Screenshot preview modal -->
+  <div class="image-modal" id="imageModal"
+       role="dialog" aria-modal="true"
+       aria-label="Screenshot preview"
+       aria-hidden="true">
 
-      <p>
-        Created a full-stack AI Resume analyser system with authentication
-        using a React frontend and Django REST backend.
-      </p>
+    <button class="modal-close" id="closeModal"
+            type="button" aria-label="Close image preview">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      Close
+    </button>
 
-      <h4 class="screenshot-heading">Project Screenshots</h4>
-
-      <div class="screenshot-gallery">
-        <figure>
-          <img class="gallery-image"
-               src="resdash.jpeg"
-               alt="Resume analyser Dashboard"
-               loading="lazy">
-          <figcaption>Dashboard</figcaption>
-        </figure>
-
-        <figure>
-          <img class="gallery-image"
-               src="resupload.jpeg"
-               alt="Resume analyser Resume upload"
-               loading="lazy">
-          <figcaption>Resume Upload</figcaption>
-        </figure>
-
-        <figure>
-          <img class="gallery-image"
-               src="resanalysis.jpeg"
-               alt="Resume analyser Resume Analysis"
-               loading="lazy">
-          <figcaption>Resume Analysis</figcaption>
-        </figure>
-
-        <figure>
-          <img class="gallery-image"
-               src="ressignin.jpeg"
-               alt="Signin"
-               loading="lazy">
-          <figcaption>Signin</figcaption>
-        </figure>
-        <figure>
-          <img class="gallery-image"
-               src="ressignup.jpeg"
-               alt="Signup"
-               loading="lazy">
-          <figcaption>Signup</figcaption>
-        </figure>
-      </div>
-
-      <p class="gallery-note">Scroll to explore. Click a screenshot to enlarge it.</p>
-
-      <div class="links">
-        <a href="https://github.com/AMAL-C-K/TASKS-MANAGEMENT-PROJECT"
-           target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://tasks-management-project-xuf7.vercel.app/"
-           target="_blank" rel="noopener noreferrer">Frontend</a>
-        <a href="https://tasks-management-project-2.onrender.com/"
-           target="_blank" rel="noopener noreferrer">Backend</a>
-      </div>
-
-      <p><strong>Tech:</strong> React, Django REST Framework, SQLite, Vercel, Render</p>
-    </div>
-
+    <img id="modalImage" src="" alt="">
   </div>
-</section>
 
-<section>
-  <h2>Education</h2>
-  <div class="card">
-    <p>
-      Bachelor of Science - Computer Science<br>
-      College of Applied Science, Calicut – University of Calicut<br>
-      April 2022
-    </p>
-  </div>
-</section>
+  <script>
+    // Mobile navigation
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
 
-<section>
-  <h2>Contact</h2>
-  <div class="card">
-    <p>Email: <a href="mailto:amalckgs@gmail.com" style="color:#60a5fa;">amalckgs@gmail.com</a></p>
-  </div>
-</section>
+    function closeNavigation() {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open navigation menu');
+      navToggle.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    }
 
-<footer>
-  <p>© 2026 AMAL C K</p>
-</footer>
+    navToggle.addEventListener('click', function () {
+      const isOpen = navLinks.classList.toggle('open');
 
-<!-- Full-size screenshot preview -->
-<div class="image-modal" id="imageModal" role="dialog"
-     aria-modal="true" aria-label="Screenshot preview">
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute(
+        'aria-label',
+        isOpen ? 'Close navigation menu' : 'Open navigation menu'
+      );
 
-  <button class="modal-close" id="closeModal" type="button"
-          aria-label="Close image preview">✕ Close</button>
+      navToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    });
 
-  <img id="modalImage" src="" alt="">
-</div>
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeNavigation);
+    });
 
-<script>
-  const galleryImages = document.querySelectorAll('.gallery-image');
-  const imageModal = document.getElementById('imageModal');
-  const modalImage = document.getElementById('modalImage');
-  const closeModalButton = document.getElementById('closeModal');
-
-  function openImage(image) {
-    modalImage.src = image.src;
-    modalImage.alt = image.alt;
-    imageModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    closeModalButton.focus();
-  }
-
-  function closeImage() {
-    imageModal.classList.remove('open');
-    modalImage.src = '';
-    document.body.style.overflow = '';
-  }
-
-  galleryImages.forEach(function(image) {
-    image.addEventListener('click', function() {
-      if (image.complete && image.naturalWidth > 0) {
-        openImage(image);
-      } else {
-        alert('This screenshot is not available yet. Please add the image to your GitHub repository.');
+    document.addEventListener('click', function (event) {
+      if (
+        !navLinks.contains(event.target) &&
+        !navToggle.contains(event.target)
+      ) {
+        closeNavigation();
       }
     });
-  });
 
-  closeModalButton.addEventListener('click', closeImage);
+    // Full-size screenshot preview
+    const galleryImages = document.querySelectorAll('.gallery-image');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModalButton = document.getElementById('closeModal');
 
-  imageModal.addEventListener('click', function(event) {
-    if (event.target === imageModal) {
-      closeImage();
+    let previouslyFocusedElement = null;
+
+    function openImage(image) {
+      if (!image.complete || image.naturalWidth === 0) {
+        alert('This screenshot could not be loaded. Please check its filename and location.');
+        return;
+      }
+
+      previouslyFocusedElement = document.activeElement;
+
+      modalImage.src = image.currentSrc || image.src;
+      modalImage.alt = image.alt;
+
+      imageModal.classList.add('open');
+      imageModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+
+      closeModalButton.focus();
     }
-  });
 
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && imageModal.classList.contains('open')) {
-      closeImage();
+    function closeImage() {
+      imageModal.classList.remove('open');
+      imageModal.setAttribute('aria-hidden', 'true');
+      modalImage.src = '';
+      modalImage.alt = '';
+      document.body.classList.remove('modal-open');
+
+      if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+      }
     }
-  });
-</script>
+
+    galleryImages.forEach(function (image) {
+      image.addEventListener('click', function () {
+        openImage(image);
+      });
+
+      image.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openImage(image);
+        }
+      });
+
+      image.setAttribute('tabindex', '0');
+      image.setAttribute('role', 'button');
+      image.setAttribute('aria-label', 'Enlarge: ' + image.alt);
+    });
+
+    closeModalButton.addEventListener('click', closeImage);
+
+    imageModal.addEventListener('click', function (event) {
+      if (event.target === imageModal) {
+        closeImage();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && imageModal.classList.contains('open')) {
+        closeImage();
+      }
+    });
+
+    // Automatically update the footer year
+    document.getElementById('currentYear').textContent =
+      new Date().getFullYear();
+  </script>
 
 </body>
 </html>
