@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
@@ -440,6 +439,25 @@
       line-height: 1.85;
     }
 
+    /* Project bullet points */
+
+    .project-points {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+
+    .project-points li {
+      margin-bottom: 7px;
+      padding-left: 3px;
+    }
+
+    .project-points li::marker {
+      color: var(--secondary);
+    }
+
     .project-tech {
       margin-top: 16px;
       color: #cbd5e1;
@@ -804,7 +822,6 @@
       }
 
       .screenshot-gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
         max-height: 330px;
       }
 
@@ -967,7 +984,6 @@
     <!-- About -->
     <section class="section" id="about">
       <div class="container">
-
         <div class="section-heading">
           <span class="eyebrow">Introduction</span>
           <h2>About Me</h2>
@@ -986,14 +1002,12 @@
 
           <div class="about-mark" aria-hidden="true">ACK</div>
         </div>
-
       </div>
     </section>
 
     <!-- Skills -->
     <section class="section" id="skills">
       <div class="container">
-
         <div class="section-heading">
           <span class="eyebrow">What I work with</span>
           <h2>Technical Skills</h2>
@@ -1028,14 +1042,12 @@
             <span>JWT Authentication</span>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- Projects -->
     <section class="section" id="projects">
       <div class="container">
-
         <div class="section-heading">
           <span class="eyebrow">Selected work</span>
           <h2>My Projects</h2>
@@ -1047,41 +1059,45 @@
 
         <div class="projects">
 
-            <!-- --------------------------------------------------------------- -->
-           <!-- AI Resume Analyser project -->
-          
-           <article class="project-card">
+          <!-- AI Resume Analyzer -->
+          <article class="project-card">
             <div class="project-content">
 
               <div class="project-icon">
                 <i class="fa-solid fa-file-circle-check" aria-hidden="true"></i>
               </div>
 
-              <h3>AI Resume Analyser</h3>
+              <h3>AI Resume Analyzer</h3>
 
               <p class="project-description">
-                Created a full-stack AI resume analysis application with
-                authentication, a React frontend, a Django REST backend,
-                and AI-powered resume feedback.
+                An AI-powered web application that analyzes resumes against
+                job descriptions and provides match scores and personalized
+                improvement suggestions.
               </p>
+
+              <ul class="project-points">
+                <li>Implemented PDF resume uploads, text extraction, and user-specific resume management.</li>
+                <li>Integrated JWT authentication to secure user accounts and API endpoints.</li>
+                <li>Integrated Google Gemini API to generate match scores, strengths, weaknesses, and improvement suggestions.</li>
+                <li>Deployed the application on Render with PostgreSQL for persistent data storage.</li>
+              </ul>
 
               <p class="project-tech">
                 <strong>Tech:</strong>
-                React, Django REST Framework, PostgreSQL, Google Gemini API, JWT
+                Python, Django REST Framework, React, PostgreSQL,
+                Google Gemini API, JWT, Git/GitHub, Render
               </p>
 
               <div class="project-links">
-                
                 <a href="https://ai-resume-analyser-api-8k49.onrender.com/"
                    target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-arrow-up-right-from-square"
-                     aria-hidden="true"></i>
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   Backend Link
                 </a>
+
                 <a href="https://ai-resume-analyser-80vh.onrender.com/login"
                    target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-arrow-up-right-from-square"
-                     aria-hidden="true"></i>
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   Frontend Link
                 </a>
 
@@ -1091,7 +1107,6 @@
                   GitHub
                 </a>
               </div>
-
             </div>
 
             <div class="gallery-section">
@@ -1101,40 +1116,35 @@
                 <figure>
                   <img class="gallery-image"
                        src="imges/resume-analyser/resume-dashboard.jpeg"
-                       alt="Resume analyser dashboard"
-                       loading="lazy">
+                       alt="Resume analyser dashboard" loading="lazy">
                   <figcaption>Dashboard</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/resume-analyser/resume-upload.jpeg"
-                       alt="Resume upload page"
-                       loading="lazy">
+                       alt="Resume upload page" loading="lazy">
                   <figcaption>Resume Upload</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/resume-analyser/resume-analysis.jpeg"
-                       alt="Resume analysis results"
-                       loading="lazy">
+                       alt="Resume analysis results" loading="lazy">
                   <figcaption>Resume Analysis</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/resume-analyser/resume-signin.jpeg"
-                       alt="Resume analyser sign-in page"
-                       loading="lazy">
+                       alt="Resume analyser sign-in page" loading="lazy">
                   <figcaption>Sign In</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/resume-analyser/resume-signup.jpeg"
-                       alt="Resume analyser signup page"
-                       loading="lazy">
+                       alt="Resume analyser signup page" loading="lazy">
                   <figcaption>Sign Up</figcaption>
                 </figure>
               </div>
@@ -1145,9 +1155,7 @@
             </div>
           </article>
 
-          <!---------------------------------------------------------------------->
-          <!-- Job portal project -->
-          
+          <!-- Job Portal -->
           <article class="project-card">
             <div class="project-content">
 
@@ -1155,39 +1163,46 @@
                 <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
               </div>
 
-              <h3>Job - Portal Web Application</h3>
+              <h3>Job Portal Web Application</h3>
 
               <p class="project-description">
-                Built a REST API with JWT authentication and role-based
-                access for job seekers and recruiters. Includes job posting
-                and application management.
+                A full-stack job portal that connects job seekers with
+                employers, enabling job searches, job postings, and
+                application management.
               </p>
+
+              <ul class="project-points">
+                <li>Implemented separate Job Seeker and Employer roles with JWT authentication and role-based access.</li>
+                <li>Built job search and job posting features with protected REST API endpoints.</li>
+                <li>Implemented job applications, applicant management, and application status updates.</li>
+                <li>Integrated the React frontend with Django REST Framework APIs and deployed the application on Render.</li>
+              </ul>
 
               <p class="project-tech">
                 <strong>Tech:</strong>
-                Python, Django REST Framework, SimpleJWT, SQLite, Postman
+                Python, Django REST Framework, React, PostgreSQL,
+                JWT, Git/GitHub, Render
               </p>
 
               <div class="project-links">
                 <a href="https://job-portal-backend-fxf3.onrender.com/"
                    target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-arrow-up-right-from-square"
-                     aria-hidden="true"></i>
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   Backend Link
                 </a>
+
                 <a href="https://job-portal-frontend-xn1q.onrender.com/login"
                    target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-arrow-up-right-from-square"
-                     aria-hidden="true"></i>
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   Frontend Link
                 </a>
+
                 <a href="https://github.com/AMAL-C-K/JOB-PORTAL-BACKEND-API"
                    target="_blank" rel="noopener noreferrer">
                   <i class="fa-brands fa-github" aria-hidden="true"></i>
                   GitHub
                 </a>
               </div>
-
             </div>
 
             <div class="gallery-section">
@@ -1197,64 +1212,57 @@
                 <figure>
                   <img class="gallery-image"
                        src="imges/jobportal/jobportal-signin.jpeg"
-                       alt="Job portal login page"
-                       loading="lazy">
-                  <figcaption>Login Page</figcaption>
-                </figure>
-                
-                <figure>
-                  <img class="gallery-image"
-                       src="imges/jobportal/jobportal-signup.jpeg"
-                       alt="Job portal login page"
-                       loading="lazy">
+                       alt="Job portal login page" loading="lazy">
                   <figcaption>Login Page</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
+                       src="imges/jobportal/jobportal-signup.jpeg"
+                       alt="Job portal signup page" loading="lazy">
+                  <figcaption>Sign Up</figcaption>
+                </figure>
+
+                <figure>
+                  <img class="gallery-image"
                        src="imges/jobportal/jobportal-jobseeker-dashboard.jpeg"
-                       alt="Job portal job listings"
-                       loading="lazy">
+                       alt="Job portal job listings" loading="lazy">
                   <figcaption>Jobseeker Dashboard</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/jobportal/jobportal-employer-dashboard.jpeg"
-                       alt="Job application page"
-                       loading="lazy">
+                       alt="Employer job management dashboard" loading="lazy">
                   <figcaption>Employer Dashboard</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/jobportal/jobportal-emplooyer-applicants.jpeg"
-                       alt="Employer job management dashboard"
-                       loading="lazy">
-                  <figcaption>Employer - Applicants list</figcaption>
+                       alt="Employer applicants list" loading="lazy">
+                  <figcaption>Employer Applicants List</figcaption>
                 </figure>
+
                 <figure>
                   <img class="gallery-image"
                        src="imges/jobportal/jobportal-jobseeker-applied.jpeg"
-                       alt="Jobseeker"
-                       loading="lazy">
-                  <figcaption>Jobseeker - Applied list</figcaption>
+                       alt="Jobseeker applied jobs list" loading="lazy">
+                  <figcaption>Applied Jobs</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/jobportal/jobportal-jobseeker-apply.jpeg"
-                       alt="Jobseeker"
-                       loading="lazy">
-                  <figcaption>Jobseeker - Apply form</figcaption>
+                       alt="Job application form" loading="lazy">
+                  <figcaption>Apply Form</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/jobportal/jobdetails.jpeg"
-                       alt="Jobseeker"
-                       loading="lazy">
-                  <figcaption>Jobseeker - Job details</figcaption>
+                       alt="Job details page" loading="lazy">
+                  <figcaption>Job Details</figcaption>
                 </figure>
               </div>
 
@@ -1264,13 +1272,7 @@
             </div>
           </article>
 
-         
- 
-
-          
-          <!-- ---------------------------------------------------------------- -->
-          <!-- E-commerce project -->
-          
+          <!-- E-commerce Bookstore -->
           <article class="project-card">
             <div class="project-content">
 
@@ -1281,14 +1283,23 @@
               <h3>E-commerce Web Application</h3>
 
               <p class="project-description">
-                Developed a full-featured e-commerce bookstore with user
-                authentication, product listings, a shopping cart, and
-                order management. Integrated Razorpay for online payments.
+                A Django-based online bookstore that allows users to browse
+                books, manage shopping carts, place orders, and make
+                online payments.
               </p>
+
+              <ul class="project-points">
+                <li>Developed user authentication, book catalog, shopping cart, and order management features.</li>
+                <li>Implemented book search, genre filtering, sorting, and pagination.</li>
+                <li>Integrated Razorpay for online payment processing.</li>
+                <li>Used Django ORM and SQLite3 to manage books, cart items, orders, and stock.</li>
+                <li>Deployed the application on PythonAnywhere.</li>
+              </ul>
 
               <p class="project-tech">
                 <strong>Tech:</strong>
-                Python, Django, HTML, CSS, Bootstrap, SQLite, Razorpay API
+                Python, Django, SQLite3, Django ORM, HTML5, CSS3,
+                Razorpay, Git/GitHub, PythonAnywhere
               </p>
 
               <div class="project-links">
@@ -1300,12 +1311,10 @@
 
                 <a href="https://readora.pythonanywhere.com/"
                    target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-arrow-up-right-from-square"
-                     aria-hidden="true"></i>
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   Live Demo
                 </a>
               </div>
-
             </div>
 
             <div class="gallery-section">
@@ -1315,64 +1324,56 @@
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-home.jpeg"
-                       alt="E-commerce bookstore homepage"
-                       loading="lazy">
+                       alt="E-commerce bookstore homepage" loading="lazy">
                   <figcaption>Bookstore Homepage</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-bookdetail.jpeg"
-                       alt="Book details page"
-                       loading="lazy">
+                       alt="Book details page" loading="lazy">
                   <figcaption>Book Details</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-cart.jpeg"
-                       alt="Shopping cart page"
-                       loading="lazy">
+                       alt="Shopping cart page" loading="lazy">
                   <figcaption>Shopping Cart</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-orders.jpeg"
-                       alt="Shopping orders page"
-                       loading="lazy">
+                       alt="Orders page" loading="lazy">
                   <figcaption>Shopping Orders</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-checkout.jpeg"
-                       alt="E-commerce checkout page"
-                       loading="lazy">
+                       alt="E-commerce checkout page" loading="lazy">
                   <figcaption>Checkout</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-login.jpeg"
-                       alt="E-commerce login page"
-                       loading="lazy">
+                       alt="E-commerce login page" loading="lazy">
                   <figcaption>Login</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-signup.jpeg"
-                       alt="E-commerce signup page"
-                       loading="lazy">
-                  <figcaption>Signup</figcaption>
+                       alt="E-commerce signup page" loading="lazy">
+                  <figcaption>Sign Up</figcaption>
                 </figure>
 
                 <figure>
                   <img class="gallery-image"
                        src="imges/bookstore/bookstore-search.jpeg"
-                       alt="E-commerce search page"
-                       loading="lazy">
+                       alt="Bookstore search page" loading="lazy">
                   <figcaption>Search</figcaption>
                 </figure>
               </div>
@@ -1383,7 +1384,6 @@
             </div>
           </article>
 
-                  
         </div>
       </div>
     </section>
@@ -1479,7 +1479,8 @@
       navLinks.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.setAttribute('aria-label', 'Open navigation menu');
-      navToggle.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+      navToggle.innerHTML =
+        '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
     }
 
     navToggle.addEventListener('click', function () {
@@ -1519,12 +1520,13 @@
 
     function openImage(image) {
       if (!image.complete || image.naturalWidth === 0) {
-        alert('This screenshot could not be loaded. Please check its filename and location.');
+        alert(
+          'This screenshot could not be loaded. Please check its filename and location.'
+        );
         return;
       }
 
       previouslyFocusedElement = document.activeElement;
-
       modalImage.src = image.currentSrc || image.src;
       modalImage.alt = image.alt;
 
@@ -1573,7 +1575,10 @@
     });
 
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && imageModal.classList.contains('open')) {
+      if (
+        event.key === 'Escape' &&
+        imageModal.classList.contains('open')
+      ) {
         closeImage();
       }
     });
